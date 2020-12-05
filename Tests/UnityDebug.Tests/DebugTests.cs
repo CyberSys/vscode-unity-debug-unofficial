@@ -152,7 +152,12 @@ namespace VSCode.UnityDebug.Tests
 				Arguments = test,
 				UserAssemblyNames = new List<AssemblyName> { assemblyName },
 			};
-			((SoftDebuggerLaunchArgs)soft.StartArgs).MonoExecutableFileName = @"C:\projects\mono\mono\build\builds\monodistribution\bin-x64\mono.exe";
+
+			const string MonoPath = @"C:\projects\mono\mono\build\builds\monodistribution\bin-x64\mono.exe";
+
+			System.Diagnostics.Debug.Assert(File.Exists(MonoPath), "Please, provide valid path to mono.exe");
+
+			((SoftDebuggerLaunchArgs)soft.StartArgs).MonoExecutableFileName = MonoPath;
 
 			if (soft != null) {
 			}
